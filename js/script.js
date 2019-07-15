@@ -50,14 +50,11 @@ function appendPageLinks(list){
       a.className = 'active';
     }
     li.appendChild(a);
+
     //Event Listener to go to the index page that is clicked and to remove the active class from all other anchor elements
     a.addEventListener('click', (e) => {
-      //Code adapted from https://stackoverflow.com/questions/38990163/how-can-i-add-and-remove-an-active-class-to-an-element-in-pure-javascript
-      //Remove the active class
       let activeClass = document.querySelector(".active");
-      if(activeClass !==null){
       activeClass.classList.remove("active");
-      }
 
       //Adds active class to the target
       e.target.className = 'active'
@@ -70,6 +67,3 @@ function appendPageLinks(list){
 
 //Call function to get clickable buttons at bottom of webpage
 appendPageLinks(listItems);
-
-
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
