@@ -11,10 +11,6 @@ FSJS project 2 - List Filter and Pagination
 const listItems = document.getElementsByClassName('student-item cf');
 const itemsPerPage = 10
 
-
-
-
-
 //Function to limit the number of page items shown to 10.
 function showPage(list, page) {
   const startIndex = (page * itemsPerPage) - itemsPerPage;
@@ -34,7 +30,7 @@ showPage(listItems, 1);
 //Function to add page links at the bottom of the webpage
 
 function appendPageLinks(list){
-  const numOfPages = Math.floor(list.length / itemsPerPage);
+  const numOfPages = Math.ceil(list.length / itemsPerPage);
   const div = document.createElement('div')
   let pageDiv = document.querySelector('.page');
   div.className = 'pagination';
@@ -49,32 +45,31 @@ function appendPageLinks(list){
     const a = document.createElement('a');
     a.href = '#'
     a.textContent = i
-    a[0].className = 'active';
+    //If statement to make the first button active
+    if (i === 1) {
+      a.className = 'active';
+    }
     li.appendChild(a);
-
-    // When the button is clicked, that buttons class is changed to active and all other buttons have the active class removed.
+    //Event Listener to go to the index page that is clicked and to remove the active class from all other anchor elements
     a.addEventListener('click', (e) => {
-      e.target.className = 'active'
-      for (let i = 0; i < numOfPages; i++) {
-        a[i].className = '';
+      //Code adapted from https://stackoverflow.com/questions/38990163/how-can-i-add-and-remove-an-active-class-to-an-element-in-pure-javascript
+      //Remove the active class
+      let activeClass = document.querySelector(".active");
+      if(activeClass !==null){
+      activeClass.classList.remove("active");
       }
-      showPage(listItems, e.textContent)
-    });
 
+      //Adds active class to the target
+      e.target.className = 'active'
+
+    // Call showPage to display the page clicked
+    showPage(listItems, e.target.textContent);
+    });
   }
 }
 
-
-
+//Call function to get clickable buttons at bottom of webpage
 appendPageLinks(listItems);
-
-/***
-   Create the `appendPageLinks function` to generate, append, and add
-   functionality to the pagination buttons.
-***/
-
-
-
 
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
