@@ -84,15 +84,16 @@ searchDiv.appendChild(searchSubmitButton);
 
 
 //Function to compare search input to the list of names
-function searchBar(searchInput, list) {
+function searchBar(search, list) {
   for (let i  = 0; i < list.length; i++) {
-    list[i].className = '';
-    if (searchInput.value.length !== 0 && list[i].textContent.toLowerCase().includes(searchInput.value.toLowerCase())) {
-      list[i].className = 'match'
+    if (search.value.length !== 0 && list[i].textContent.toLowerCase().includes(search.value.toLowerCase())) {
       let matchArray = [];
       matchArray.push(list[i]);
+      const matchPages = Math.ceil(matchArray.length / 10)
       //console.log(selectMatch);
       console.log(matchArray);
+      showPage(matchArray, matchPages);
+      appendPageLinks(matchArray);
     }
   }
 }
@@ -100,10 +101,12 @@ function searchBar(searchInput, list) {
 searchSubmitButton.addEventListener('click', (event) => {
   event.preventDefault();
   searchBar(searchInput, listItems);
+
   console.log('submit button working')
 });
 
 searchInput.addEventListener('keyup', () => {
   searchBar(searchInput, listItems);
+
   console.log('keyup event on search input functional')
 });
