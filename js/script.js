@@ -67,3 +67,39 @@ function appendPageLinks(list){
 
 //Call function to get clickable buttons at bottom of webpage
 appendPageLinks(listItems);
+
+//Creating the HTML for where the searchBar will be placed
+const searchDiv = document.createElement('div');
+searchDiv.className = 'student-search';
+const divHeader = document.getElementsByClassName('page-header cf');
+divHeader.appendChild(searchDiv);
+const searchInput = document.createElement('input');
+searchInput.placeholder = 'Search for students...';
+searchInput.className = 'search-input'
+const searchSubmitButton = document.createElement('button');
+searchSubmitButton.textContent = 'Search';
+
+
+//Function to insert usable search input
+function searchBar(searchInput, list) {
+  for (let i  = 0; i < list.length; i++) {
+    list[i].className = '';
+    if (searchInput.value.length !== 0 && list[i].textContent.toLowerCase().includes(searchInput.value.toLowerCase())) {
+      list[i].className = 'match'
+      let matchArray = []
+      let selectMatch = document.querySelectorAll('.match')
+      selectMatch.push(matchArray);
+    }
+  }
+}
+
+searchSubmitButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  searchBar(searchInput, listItems);
+  console.log('submit button working')
+});
+
+searchInput.addEventListener('keyup', () => {
+  searchBar(searchInput, listItems);
+  console.log('keyup event on search input functional')
+});
