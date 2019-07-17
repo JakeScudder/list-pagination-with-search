@@ -30,13 +30,26 @@ showPage(listItems, 1);
 //Function to add page links at the bottom of the webpage
 
 function appendPageLinks(list){
+
+
+
   const numOfPages = Math.ceil(list.length / itemsPerPage);
   const div = document.createElement('div')
   let pageDiv = document.querySelector('.page');
   div.className = 'pagination';
+  let paginationClass = document.querySelector('.pagination');
+
+
   pageDiv.appendChild(div);
   const ul = document.createElement('ul');
+  ul.className = 'exists';
+
+//Trying to erase ul elements if they already exist
+  if (document.body.contains(document.querySelector('.exists'))) {
+    paginationClass.remove(document.querySelector('.exists'));
+  }
   div.appendChild(ul);
+
 
   //For loop to create button based on the number of pages.  It then creates an li and anchor element for each page
   for (let i = 1; i <= numOfPages; i++) {
@@ -85,13 +98,12 @@ searchDiv.appendChild(searchSubmitButton);
 
 //Function to compare search input to the list of names
 function searchBar(search, list) {
+
   for (let i  = 0; i < list.length; i++) {
     if (search.value.length !== 0 && list[i].textContent.toLowerCase().includes(search.value.toLowerCase())) {
       let matchArray = [];
       matchArray.push(list[i]);
-      const matchPages = Math.ceil(matchArray.length / 10)
-      //console.log(selectMatch);
-      console.log(matchArray);
+      const matchPages = Math.ceil(matchArray.length / 10);
       showPage(matchArray, matchPages);
       appendPageLinks(matchArray);
     }
