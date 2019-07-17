@@ -71,24 +71,28 @@ appendPageLinks(listItems);
 //Creating the HTML for where the searchBar will be placed
 const searchDiv = document.createElement('div');
 searchDiv.className = 'student-search';
-const divHeader = document.getElementsByClassName('page-header cf');
+const divHeader = document.getElementsByClassName('page-header cf')[0];
+console.log(divHeader);
 divHeader.appendChild(searchDiv);
 const searchInput = document.createElement('input');
 searchInput.placeholder = 'Search for students...';
 searchInput.className = 'search-input'
+searchDiv.appendChild(searchInput);
 const searchSubmitButton = document.createElement('button');
 searchSubmitButton.textContent = 'Search';
+searchDiv.appendChild(searchSubmitButton);
 
 
-//Function to insert usable search input
+//Function to compare search input to the list of names
 function searchBar(searchInput, list) {
   for (let i  = 0; i < list.length; i++) {
     list[i].className = '';
     if (searchInput.value.length !== 0 && list[i].textContent.toLowerCase().includes(searchInput.value.toLowerCase())) {
       list[i].className = 'match'
-      let matchArray = []
-      let selectMatch = document.querySelectorAll('.match')
-      selectMatch.push(matchArray);
+      let matchArray = [];
+      matchArray.push(list[i]);
+      //console.log(selectMatch);
+      console.log(matchArray);
     }
   }
 }
