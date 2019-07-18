@@ -98,7 +98,7 @@ searchDiv.appendChild(searchSubmitButton);
 //Function to compare search input to the list of names
 function searchBar(searchInput, list) {
   let matchArray = [];
-  for (let i  = 0; i <= list.length; i++) {
+  for (let i  = 0; i < list.length; i++) {
     list[i].style.display = 'none';
     if (searchInput.value.length !== 0 && list[i].children[0].children[1].textContent.toLowerCase().includes(searchInput.value.toLowerCase())) {
       matchArray.push(list[i]);
