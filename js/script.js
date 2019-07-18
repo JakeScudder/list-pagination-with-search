@@ -98,12 +98,17 @@ searchDiv.appendChild(searchSubmitButton);
 
 //Function to compare search input to the list of names
 function searchBar(search, list) {
+  let matchArray = [];
 
   for (let i  = 0; i < list.length; i++) {
     if (search.value.length !== 0 && list[i].textContent.toLowerCase().includes(search.value.toLowerCase())) {
-      let matchArray = [];
       matchArray.push(list[i]);
-      const matchPages = Math.ceil(matchArray.length / 10);
+      const matchPages = Math.ceil(matchArray.length / itemsPerPage);
+
+
+      let activeClass = document.querySelector('.active')
+      activeClass.style.display = 'none';
+
       showPage(matchArray, matchPages);
       appendPageLinks(matchArray);
     }
