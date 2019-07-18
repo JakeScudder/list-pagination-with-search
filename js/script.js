@@ -107,7 +107,7 @@ function searchBar(search, list) {
 
 
       let activeClass = document.querySelector('.active')
-      activeClass.style.display = 'none';
+      activeClass.classList.remove('active');
 
       showPage(matchArray, matchPages);
       appendPageLinks(matchArray);
