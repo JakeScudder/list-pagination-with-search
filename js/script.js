@@ -15,7 +15,7 @@ const itemsPerPage = 10
 function showPage(list, page) {
   const startIndex = (page * itemsPerPage) - itemsPerPage;
   const endIndex = page * itemsPerPage
-  for (let i = 1; i < list.length; i++) {
+  for (let i = 0; i < list.length; i++) {
     if (i >= startIndex && i <= endIndex) {
       list[i].style.display = 'block';
     } else {
@@ -99,14 +99,13 @@ searchDiv.appendChild(searchSubmitButton);
 function searchBar(searchInput, list) {
   let matchArray = [];
   for (let i  = 0; i <= list.length; i++) {
-    if (searchInput.value.length !== 0 && list[i].textContent.toLowerCase().includes(searchInput.value.toLowerCase())) {
+    list[i].style.display = 'none'
+    if (searchInput.value.length !== 0 && list[i].children[0].children[1].textContent.toLowerCase().includes(searchInput.value.toLowerCase())) {
       matchArray.push(list[i]);
-      const matchPages = Math.ceil(matchArray.length / itemsPerPage);
-
-      showPage(matchArray, matchPages);
-      appendPageLinks(matchArray);
     }
   }
+  showPage(matchArray, 1);
+  appendPageLinks(matchArray);
 }
 
 searchSubmitButton.addEventListener('click', (event) => {
