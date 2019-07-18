@@ -15,8 +15,8 @@ const itemsPerPage = 10
 function showPage(list, page) {
   const startIndex = (page * itemsPerPage) - itemsPerPage;
   const endIndex = page * itemsPerPage
-  for (let i = 0; i < list.length; i++) {
-    if (i >= startIndex && i < endIndex) {
+  for (let i = 1; i < list.length; i++) {
+    if (i >= startIndex && i <= endIndex) {
       list[i].style.display = 'block';
     } else {
       list[i].style.display = 'none';
@@ -85,7 +85,6 @@ appendPageLinks(listItems);
 const searchDiv = document.createElement('div');
 searchDiv.className = 'student-search';
 const divHeader = document.getElementsByClassName('page-header cf')[0];
-console.log(divHeader);
 divHeader.appendChild(searchDiv);
 const searchInput = document.createElement('input');
 searchInput.placeholder = 'Search for students...';
@@ -97,17 +96,12 @@ searchDiv.appendChild(searchSubmitButton);
 
 
 //Function to compare search input to the list of names
-function searchBar(search, list) {
+function searchBar(searchInput, list) {
   let matchArray = [];
-
-  for (let i  = 0; i < list.length; i++) {
-    if (search.value.length !== 0 && list[i].textContent.toLowerCase().includes(search.value.toLowerCase())) {
+  for (let i  = 0; i <= list.length; i++) {
+    if (searchInput.value.length !== 0 && list[i].textContent.toLowerCase().includes(searchInput.value.toLowerCase())) {
       matchArray.push(list[i]);
       const matchPages = Math.ceil(matchArray.length / itemsPerPage);
-
-
-      let activeClass = document.querySelector('.active')
-      activeClass.classList.remove('active');
 
       showPage(matchArray, matchPages);
       appendPageLinks(matchArray);
