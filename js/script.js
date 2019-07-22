@@ -93,6 +93,7 @@ searchDiv.appendChild(searchInput);
 const searchSubmitButton = document.createElement('button');
 searchSubmitButton.textContent = 'Search';
 searchDiv.appendChild(searchSubmitButton);
+const noResults = document.createElement('h3');
 
 
 //Function to compare search input to the list of names
@@ -100,12 +101,27 @@ function searchBar(searchInput, list) {
   let matchArray = [];
   for (let i  = 0; i < list.length; i++) {
     list[i].style.display = 'none';
+    //Conditional statement to load the webpage normally if the searchBar has no value
+    if (searchInput.value.length === 0) {
+      noResults.textContent = '';
+      showPage(listItems, 1);
+      appendPageLinks(listItems);
+    }
+    //Conditional to find the name from the list of names
     if (searchInput.value.length !== 0 && list[i].children[0].children[1].textContent.toLowerCase().includes(searchInput.value.toLowerCase())) {
       matchArray.push(list[i]);
+    //Conditional to say No results if the name is not in the list
     }
   }
+  if (matchArray.length === 0 && searchInput.value.length !== 0) {
+
+    noResults.id = "padding"
+    noResults.textContent = 'Sorry, No Results Found   ';
+    searchDiv.appendChild(noResults);
+  } else {
   showPage(matchArray, 1);
   appendPageLinks(matchArray);
+  }
 }
 
 searchSubmitButton.addEventListener('click', (event) => {
