@@ -3,11 +3,8 @@ Treehouse Techdegree:
 FSJS project 2 - List Filter and Pagination
 ******************************************/
 
-// Study guide for this project - https://drive.google.com/file/d/1OD1diUsTMdpfMDv677TfL1xO2CEkykSz/view?usp=sharing
-
 
 //Global variables for list items and number of items per page
-
 const listItems = document.getElementsByClassName('student-item cf');
 const itemsPerPage = 10
 
@@ -23,23 +20,18 @@ function showPage(list, page) {
     }
   }
 }
-//Initial function call to display webpage
 
+//Initial function call to display webpage
 showPage(listItems, 1);
 
 //Function to add page links at the bottom of the webpage
-
 function appendPageLinks(list){
-
-
 
   const numOfPages = Math.ceil(list.length / itemsPerPage);
   const div = document.createElement('div')
   let pageDiv = document.querySelector('.page');
   div.className = 'pagination';
   let paginationClass = document.querySelector('.pagination');
-
-
   pageDiv.appendChild(div);
   const ul = document.createElement('ul');
   ul.className = 'exists';
@@ -49,7 +41,6 @@ function appendPageLinks(list){
     paginationClass.remove(document.querySelector('.exists'));
   }
   div.appendChild(ul);
-
 
   //For loop to create button based on the number of pages.  It then creates an li and anchor element for each page
   for (let i = 1; i <= numOfPages; i++) {
@@ -103,7 +94,7 @@ function searchBar(searchInput, list) {
   for (let i  = 0; i < list.length; i++) {
     list[i].style.display = 'none';
     //Conditional statement to load the webpage normally if the searchBar has no value
-    if (searchInput.value.length === 0 && matchArray.length === 0) {
+    if (searchInput.value.length === 0) {
       noResults.textContent = '';
       showPage(listItems, 1);
       appendPageLinks(listItems);
@@ -111,8 +102,8 @@ function searchBar(searchInput, list) {
     //Conditional to find the name from the list of names
     if (searchInput.value.length !== 0 && list[i].children[0].children[1].textContent.toLowerCase().includes(searchInput.value.toLowerCase())) {
       matchArray.push(list[i]);
-    //Conditional to say No results if the name is not in the list
     }
+  //Conditional to say No results if the name is not in the list
   }
   if (matchArray.length === 0 && searchInput.value.length !== 0) {
     noResults.textContent = 'Sorry, No Results Found   ';
@@ -123,6 +114,7 @@ function searchBar(searchInput, list) {
   }
 }
 
+//Event listeners for the search Bar
 searchSubmitButton.addEventListener('click', (event) => {
   event.preventDefault();
   searchBar(searchInput, listItems);
