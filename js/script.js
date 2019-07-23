@@ -64,7 +64,7 @@ function appendPageLinks(list){
       e.target.className = 'active'
 
     // Call showPage to display the page clicked
-    showPage(listItems, e.target.textContent);
+    showPage(list, e.target.textContent);
     });
   }
 }
