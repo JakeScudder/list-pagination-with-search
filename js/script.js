@@ -96,17 +96,15 @@ function searchBar(searchInput, list) {
     //Conditional statement to load the webpage normally if the searchBar has no value
     if (searchInput.value.length === 0) {
       noResults.textContent = '';
-      showPage(listItems, 1);
-      appendPageLinks(listItems);
     }
     //Conditional to find the name from the list of names
-    if (searchInput.value.length !== 0 && list[i].children[0].children[1].textContent.toLowerCase().includes(searchInput.value.toLowerCase())) {
+    if (list[i].children[0].children[1].textContent.toLowerCase().includes(searchInput.value.toLowerCase())) {
       matchArray.push(list[i]);
     }
   //Conditional to say No results if the name is not in the list
   }
   if (matchArray.length === 0 && searchInput.value.length !== 0) {
-    noResults.textContent = 'Sorry, No Results Found   ';
+    noResults.textContent = 'Sorry, No Results Found';
     searchDiv.appendChild(noResults);
   } else {
   showPage(matchArray, 1);
