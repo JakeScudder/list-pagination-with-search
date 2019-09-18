@@ -73,6 +73,10 @@ function appendPageLinks(list){
 //Call function to get clickable buttons at bottom of webpage
 appendPageLinks(listItems);
 
+/****************************************
+Search Bar
+****************************************/
+
 //Creating the HTML for where the searchBar will be placed
 const searchDiv = document.createElement('div');
 const divHeader = document.getElementsByClassName('page-header cf')[0];
@@ -114,7 +118,10 @@ function searchBar(searchInput, list) {
   }
 }
 
-//Event listeners for the search Bar
+/****************************************
+Event Listeners
+****************************************/
+
 searchSubmitButton.addEventListener('click', (event) => {
   event.preventDefault();
   searchBar(searchInput, listItems);
